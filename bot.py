@@ -93,7 +93,14 @@ async def inv(ctx):
     emb = discord.Embed(title= 'Создано приглашение на сервер', color=discord.Color.orange())
     emb.add_field(name= 'Приглашение создано участником:', value = ctx.author.mention)
     await log.send(embed=emb) #отправка лога.
-    
+
+@client.event
+async def on_see(*args):
+    type = discord.ActivityType.listening
+    activity = discord.Activity(name = "на тебя", type = type)
+    status = discord.Status.dnd
+    await client.change_presence(activity = activity, status = status)
+
 #Connect
 token = os.environ.get('BOT_TOKEN')
 
