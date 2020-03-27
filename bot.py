@@ -93,7 +93,12 @@ async def inv(ctx):
     emb.add_field(name= 'Приглашение создано участником:', value = ctx.author.mention)
     await log.send(embed=emb) #отправка лога.
     
+@client.command()
+@commands.has_permissions( administrator = True)
+async def say(ctx, *, arg):
 
+    await ctx.message.delete()
+    await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))
 
 #Connect
 token = os.environ.get('BOT_TOKEN')
