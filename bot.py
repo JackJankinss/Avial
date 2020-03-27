@@ -83,24 +83,18 @@ async def time(ctx):
 
     await ctx.send( embed = emb )
  
-#Member on server
 @client.command()
-async def members_info(ctx):
-    server_members = ctx.guild.members
-
-    e_mi = discord.Embed(
-        title = 'Кол-во участников на сервере',
-        description = f'Участников: [{len(server_members)}]'
-    )
-
-    e_mi.add_field(
-        name = f'Участники',
-        value = f"".join([i.name for i in server_members])
-    )
-
-    await ctx.send(embed = e_mi)
-
-    #Connect
+async def inv(ctx):
+    channel = client.get_channel(532486664363442180) #id канала, который увидит приглашённый пользователь впервые при входе на сервер
+    log = client.get_channel(693181465336217680) #id канала с логами приглашений
+    await ctx.message.delete()
+    invitelink = await channel.create_invite(max_uses=1, max_age=21600, unique=True) #Настраиваем само приглашение - количество использований и длительность действия. Именно тут - одно использование и 6 часов. Подроблее: API Ref.
+    await ctx.author.send(f'Вы запросили ссылку-приглашение на сервер. Здорово! Теперь отправь eё другу:\n{invitelink}') #приглашение в ЛС пользователю
+    emb = discord.Embed(title= 'Создано приглашение на сервер', color=discord.Color.orange())
+    emb.add_field(name= 'Приглашение создано участником:', value = ctx.author.mention)
+    await log.send(embed=emb) #отправка лога.
+    
+#Connect
 token = os.environ.get('BOT_TOKEN')
 
 client.run(token)
