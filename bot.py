@@ -2,7 +2,9 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 import datetime
-import os 
+import os
+import random
+import asyncio
 PREFIX = '.'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
@@ -100,7 +102,21 @@ async def say(ctx, *, arg):
     await ctx.message.delete()
     await ctx.send(embed = discord.Embed(description = f'{arg}', color=0x0c0c0c))
     
-
+@client.command()
+@commands.has_permissions(administrator = True)
+async def pidor(ctx, arg: discord.Member):
+    colors = (0xFF0000,0xFF7F00,0xFFFF00,0x00FF00,0x0000FF,0x4B0082,0x9400D3)
+    role = discord.utils.get(ctx.guild.roles, id = '693209339158200452')
+    await arg.add_roles(role)
+    emb1 = discord.Embed(description=f"Теперь ты пидор, {arg.mention}", colour= 0xffffff)
+    emb1.set_thumbnail(url= arg.avatar_url)
+    emb1.set_footer(text= f'Вызвал: {ctx.author}', icon_url= ctx.author.avatar_url)
+    await ctx.send(embed = emb1)
+    while True:
+        await asyncio.sleep(2)
+        col = random.choice(colors)
+        role = discord.utils.get(ctx.guild.roles, id = '693209339158200452')
+        await role.edit(colour = discord.Colour(col))
 
 #Connect
 token = os.environ.get('BOT_TOKEN')
