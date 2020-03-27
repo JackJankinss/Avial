@@ -97,12 +97,6 @@ async def inv(ctx):
     emb.add_field(name= 'Приглашение создано участником:', value = ctx.author.mention)
     await log.send(embed=emb) #отправка лога.
     
-@client.command()
-@commands.has_permissions(administrator = True)
-async def voice_create(ctx, *, arg): 
-    guild = ctx.guild
-    channel = await guild.create_voice_channel(f'{arg}')
-    await ctx.send(embed = discord.Embed(description = f'**:microphone2: Голосовой канал "{arg}" успешно создан!**', color=0x0c0c0c))
 
 
 #Connect
