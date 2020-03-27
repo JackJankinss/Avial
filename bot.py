@@ -10,7 +10,7 @@ client.remove_command('help')
 @client.event
 async def on_ready(*args):
     type = discord.ActivityType.listening
-    activity = discord.Activity(name = "на тебя", type = type)
+    activity = discord.Activity(name = "тебя", type = type)
     status = discord.Status.dnd
     await client.change_presence(activity = activity, status = status)
 
