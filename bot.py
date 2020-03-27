@@ -6,10 +6,13 @@ import os
 PREFIX = '.'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
-@client.event
 
-async def on_ready():
-    print('Ya rodilsya')
+@client.event
+async def on_ready(*args):
+    type = discord.ActivityType.listening
+    activity = discord.Activity(name = "на тебя", type = type)
+    status = discord.Status.dnd
+    await client.change_presence(activity = activity, status = status)
 
 #clear
 @client.command(pass_context = True)
@@ -94,12 +97,6 @@ async def inv(ctx):
     emb.add_field(name= 'Приглашение создано участником:', value = ctx.author.mention)
     await log.send(embed=emb) #отправка лога.
 
-@client.event
-async def on_see(*args):
-    type = discord.ActivityType.listening
-    activity = discord.Activity(name = "на тебя", type = type)
-    status = discord.Status.dnd
-    await client.change_presence(activity = activity, status = status)
 
 #Connect
 token = os.environ.get('BOT_TOKEN')
