@@ -7,12 +7,6 @@ PREFIX = '.'
 client = commands.Bot(command_prefix = PREFIX)
 client.remove_command('help')
 
-@client.event
-async def on_ready(*args):
-    type = discord.ActivityType.listening
-    activity = discord.Activity(name = "тебя", type = type)
-    status = discord.Status.dnd
-    await client.change_presence(activity = activity, status = status)
 
 #clear
 @client.command(pass_context = True)
