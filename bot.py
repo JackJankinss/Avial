@@ -81,8 +81,26 @@ async def time(ctx):
     now_date = datetime.datetime.now()
     emb.add_field(name='Time', value='{}'.format(now_date))
 
-    await ctx.send( embed = emb ) 
-#Connect
+    await ctx.send( embed = emb )
+ 
+#Member on server
+@client.command()
+async def members_info(ctx):
+    server_members = ctx.guild.members
+
+    e_mi = discord.Embed(
+        title = 'Кол-во участников на сервере',
+        description = f'Участников: [{len(server_members)}]'
+    )
+
+    e_mi.add_field(
+        name = f'Участники',
+        value = f"".join([i.name for i in server_members])
+    )
+
+    await ctx.send(embed = e_mi)
+
+    #Connect
 token = os.environ.get('BOT_TOKEN')
 
 client.run(token)
