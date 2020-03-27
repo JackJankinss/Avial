@@ -63,6 +63,8 @@ async def help(ctx):
     emb.add_field(name = '{}clear'.format(PREFIX), value = 'Очистка чата' )
     emb.add_field(name = '{}kick'.format(PREFIX), value = 'удаление участника с сервера' )
     emb.add_field(name = '{}ban'.format(PREFIX), value = 'Ограничение доступа к серверу' )
+    emb.add_field(name = '{}time'.format(PREFIX), value = 'Показывает время' )
+    emb.add_field(name = '{}inv'.format(PREFIX), value = 'Создаёт приглашение на сервер' )
     
     await ctx.send(embed = emb)
 
