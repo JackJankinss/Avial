@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
+from random import choice
 import datetime
 import os
 import random
@@ -118,6 +119,40 @@ async def pidor(ctx, arg: discord.Member):
         role = discord.utils.get(ctx.guild.roles, id = '693209339158200452')
         await role.edit(colour = discord.Colour(col))
 
+ while True:
+    moves = ['Камень','Ножницы','Бумага']
+    a = input("Выбери ход Камень, Ножницы или Бумага: ")
+    b = random.choice(moves)
+
+    if (a == "Бумага") and (b == "Ножницы"):
+        print("Бот победил!")
+    
+    if (a == "Ножницы") and (b == "Бумага"):
+        print("Ты победил!")
+
+    if (a == "Бумагаь") and (b == "Камень"):
+        print("Ты победил!")
+    
+    if (a == "Камень") and (b == "Бумага"):
+        print("Бот победил!")
+    
+    if (a == "Камень") and (b == "Ножницы"):
+        print("Ты победил!")
+    
+    if (a == "Ножницы") and (b == "Камень"):
+        print("Бот победил!")
+    
+    if (a == "Бумага") and (b == "Бумага"):
+        print("Ничья!")
+    
+    if (a == "Ножницы") and (b == "Ножницы"):
+        print("Ничья!")
+
+    if (a == "Камень") and (b == "Камень"):
+        print("Ничья!")
+       
+       
+ 
 #Connect
 token = os.environ.get('BOT_TOKEN')
 
